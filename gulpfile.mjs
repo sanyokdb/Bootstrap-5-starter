@@ -10,6 +10,7 @@ const PATH_SRC_HTML = 'assets/src/*.html';
 const PATH_SRC_JS = 'assets/src/js/main.js';
 const PATH_SRC_CSS = 'assets/src/style/main.scss';
 const PATH_SRC_IMG = 'assets/src/img/**/*.*';
+const PATH_SRC_SVG = 'assets/src/img/svgicons/*.svg';
 const PATH_SRC_FONTS = 'assets/src/fonts/**/*.*';
 
 const PATH_WATCH_HTML = 'assets/src/**/*.html';
@@ -39,6 +40,7 @@ import mozjpeg from 'imagemin-mozjpeg';
 import optipng from 'imagemin-optipng';
 import svgo from 'imagemin-svgo';
 import notify from 'gulp-notify';
+import svgSprite from 'gulp-svg-sprite';
 
 const browserSync = sync.create();
 const sass = gulpSass(compilerSass);
@@ -99,6 +101,45 @@ gulp.task('image:build', () => {
       optipng({ optimizationLevel: 5 }),
       svgo()
     ]))
+    .pipe(gulp.dest(PATH_BUILD_IMG))
+});
+
+// обработка SVG иконок
+gulp.task('svgSprite', () => {
+  return gulp.src(PATH_SRC_SVG)
+    .pipe(svgSprite({
+      shape: {
+        dimension: {
+          maxWidth: 32,
+          maxHeight: 32
+        },
+        spacing: {
+          padding: 0
+        },
+        transform: [{
+          "svgo": {
+            "plugins": [
+              { removeViewBox: false },
+              { removeUnusedNS: false },
+              { removeUselessStrokeAndFill: true },
+              { cleanupIDs: false },
+              { removeComments: true },
+              { removeEmptyAttrs: true },
+              { removeEmptyText: true },
+              { collapseGroups: true },
+              { removeAttrs: { attrs: '(fill|stroke|style)' } }
+            ]
+          }
+        }]
+      },
+      mode: {
+        inline: true,
+        symbol: {
+          sprite: "../icons/sprite.svg",
+          example: true
+        },
+      },
+    }))
     .pipe(gulp.dest(PATH_BUILD_IMG))
 });
 
