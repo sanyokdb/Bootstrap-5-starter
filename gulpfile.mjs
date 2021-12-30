@@ -105,7 +105,8 @@ gulp.task('image:build', () => {
 });
 
 // обработка SVG иконок
-gulp.task('svgSprite', () => {
+gulp.task('svg', () => {
+  
   return gulp.src(PATH_SRC_SVG)
     .pipe(svgSprite({
       shape: {
@@ -134,7 +135,7 @@ gulp.task('svgSprite', () => {
       },
       mode: {
         inline: true,
-        symbol: {
+        stack: {
           sprite: "../icons/sprite.svg",
           example: true
         },
