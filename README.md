@@ -1,2 +1,2 @@
 # Стартовый шаблон Bootstrap 5
-Thanks a lot <a href="https://github.com/itchief">itchef</a> for <a href="https://itchief.ru/bootstrap/build-project-with-gulp-v4" rel="nofollow">article</a> and boilerplate with gulp and bootstrap 4! Bootstrap 5 starter boilerplate with Gulp was made due to the pattern <a href="https://github.com/itchief/gulp-project-bootstrap-4">itchief repository</a>. It was modified and updated to the bootstrap 5.
+Большое спасибо <a href="https://github.com/itchief">itchef</a> за <a href="https://itchief.ru/bootstrap/build-project-with-gulp-v4" rel="nofollow">статью Сборка Вootstrap 4 проекта с использованием Gulp</a>! Он был изменен и обновлен Bootstrap 5.
